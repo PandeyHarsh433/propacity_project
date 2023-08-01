@@ -219,4 +219,4 @@ const List = ({ dataItem, name, del, view }) => {
   );
 };
 
-export default Grid;
+export default List;
