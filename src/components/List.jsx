@@ -1,32 +1,35 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  AiOutlineMore,
-  AiOutlineEye,
-  AiOutlineDownload,
-  AiOutlineDelete,
-} from "react-icons/ai";
+import { AiOutlineMore, AiOutlineEye, AiOutlineDownload, AiOutlineDelete } from "react-icons/ai";
 import { BsPencil, BsShare, BsFolder2, BsLock } from "react-icons/bs";
 
 const List = ({ dataItem, name, del, view }) => {
+  // State to toggle the visibility of the dropdown menu
   const [showDropdown, setShowDropdown] = useState(false);
+  
+  // Ref to the dropdown menu container to handle clicks outside
   const dropdownRef = useRef(null);
 
+  // Function to toggle the dropdown visibility
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState);
   };
 
+  // Function to handle the delete action
   const handleDelete = () => {
     del(dataItem);
     setShowDropdown(false);
   };
 
+  // Function to handle the view action
   const handleView = () => {
     view(dataItem);
     setShowDropdown(false);
   };
 
+  // useEffect to add click event listener and remove it on unmount
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Close the dropdown when clicked outside
       if (
         showDropdown &&
         event.target.closest("#dropdownMenuIconButton") === null &&
@@ -44,8 +47,10 @@ const List = ({ dataItem, name, del, view }) => {
 
   return (
     <div className="w-[100%]">
+      {/* List Element */}
       <div className="flex justify-between items-center p-3 rounded-md text-white relative">
         <div className="text-lg text-white flex bg-slate-500">
+          {/* Display appropriate icon based on the 'name' prop */}
           <div className="pr-3">
             {name
               ? name === "Films"
@@ -63,15 +68,14 @@ const List = ({ dataItem, name, del, view }) => {
                 : ""
               : "logo"}
           </div>
+          {/* Display the name of the item */}
           <div className="">
-            {dataItem
-              ? name === "Films"
-                ? dataItem.title
-                : dataItem.name
-              : "Movies Name"}
+            {dataItem ? (name === "Films" ? dataItem.title : dataItem.name) : "Movies Name"}
           </div>
         </div>
+        {/* Show additional details in small screens */}
         <div className="sm:hidden">
+          {/* Display item details based on the 'name' prop */}
           {name
             ? name === "Films"
               ? dataItem.director
@@ -89,6 +93,7 @@ const List = ({ dataItem, name, del, view }) => {
             : "logo"}
         </div>
         <div className="sm:hidden">
+          {/* Display item details based on the 'name' prop */}
           {name
             ? name === "Films"
               ? dataItem.release_date
@@ -106,12 +111,14 @@ const List = ({ dataItem, name, del, view }) => {
             : "logo"}
         </div>
         <div className="text-white text-lg font-bold px-3 rounded-md cursor-pointer">
+          {/* Dropdown menu icon */}
           <AiOutlineMore
             onClick={toggleDropdown}
             id="dropdownMenuIconButton"
             data-dropdown-toggle="dropdownDots"
           />
 
+          {/* Render the dropdown menu when 'showDropdown' is true */}
           {showDropdown && (
             <div
               ref={dropdownRef}
@@ -122,6 +129,7 @@ const List = ({ dataItem, name, del, view }) => {
                 className="py-2 text-sm text-gray-700 dark:text-gray-200"
                 aria-labelledby="dropdownMenuIconButton bg-white rounded-md"
               >
+                {/* Dropdown menu options */}
                 <li>
                   <a
                     href="#"
@@ -142,7 +150,7 @@ const List = ({ dataItem, name, del, view }) => {
                     className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white bg-white"
                   >
                     <div className="flex justify-start gap-3 bg-white items-center">
-                      <div className="bg-white ">
+                      <div className="bg-white">
                         <AiOutlineDownload className="bg-white" />
                       </div>
                       <div className="bg-white">Download</div>
@@ -155,7 +163,7 @@ const List = ({ dataItem, name, del, view }) => {
                     className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white bg-white"
                   >
                     <div className="flex justify-start gap-3 bg-white items-center">
-                      <div className="bg-white ">
+                      <div className="bg-white">
                         <BsPencil className="bg-white" />
                       </div>
                       <div className="bg-white">Rename</div>
@@ -168,7 +176,7 @@ const List = ({ dataItem, name, del, view }) => {
                     className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white bg-white"
                   >
                     <div className="flex justify-start gap-3 bg-white items-center">
-                      <div className="bg-white ">
+                      <div className="bg-white">
                         <BsShare className="bg-white" />
                       </div>
                       <div className="bg-white">Share Link</div>
@@ -181,7 +189,7 @@ const List = ({ dataItem, name, del, view }) => {
                     className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white bg-white"
                   >
                     <div className="flex justify-start gap-3 bg-white items-center">
-                      <div className="bg-white ">
+                      <div className="bg-white">
                         <BsLock className="bg-white" />
                       </div>
                       <div className="bg-white">Mark Private</div>
@@ -195,7 +203,7 @@ const List = ({ dataItem, name, del, view }) => {
                     onClick={handleDelete}
                   >
                     <div className="flex justify-start gap-3 bg-white items-center">
-                      <div className="bg-white ">
+                      <div className="bg-white">
                         <AiOutlineDelete className="bg-white" />
                       </div>
                       <div className="bg-white">Delete</div>
@@ -211,4 +219,4 @@ const List = ({ dataItem, name, del, view }) => {
   );
 };
 
-export default List;
+export default Grid;
