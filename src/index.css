@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  background-color: rgb(36, 32, 68);
+}
+
+@media screen and (max-width: 321px) {
+  .nav-img {
+    width: 30rem;
+    margin-right: 3.5rem;
+  }
+  .grid-list {
+    margin-right: -10rem;
+    padding-right: 0rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .grid-list {
+    margin-left: -2rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .list-header {
+    margin-right: 4rem;
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .hero-style {
+    left: 0;
+  }
+  .hero-main {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .left-swipe {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .hero-style {
+    left: 0;
+  }
+  .hero-main {
+    width: 100%;
+  }
+}
